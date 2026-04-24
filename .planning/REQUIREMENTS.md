@@ -106,43 +106,43 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PROD-01 | TBD | Pending |
-| PROD-02 | TBD | Pending |
-| PROD-03 | TBD | Pending |
-| FOUND-01 | TBD | Pending |
-| FOUND-02 | TBD | Pending |
-| FOUND-03 | TBD | Pending |
-| FOUND-04 | TBD | Pending |
-| TRAN-01 | TBD | Pending |
-| TRAN-02 | TBD | Pending |
-| TRAN-03 | TBD | Pending |
-| TRAN-04 | TBD | Pending |
-| CAPT-01 | TBD | Pending |
-| CAPT-02 | TBD | Pending |
-| CAPT-03 | TBD | Pending |
-| CAPT-04 | TBD | Pending |
-| CAPT-05 | TBD | Pending |
-| LIBR-01 | TBD | Pending |
-| LIBR-02 | TBD | Pending |
-| LIBR-03 | TBD | Pending |
-| LIBR-04 | TBD | Pending |
-| LIBR-05 | TBD | Pending |
-| REVIEW-01 | TBD | Pending |
-| REVIEW-02 | TBD | Pending |
-| REVIEW-03 | TBD | Pending |
-| REVIEW-04 | TBD | Pending |
-| REVIEW-05 | TBD | Pending |
-| REVIEW-06 | TBD | Pending |
-| REVIEW-07 | TBD | Pending |
-| QUAL-01 | TBD | Pending |
-| QUAL-02 | TBD | Pending |
-| QUAL-03 | TBD | Pending |
-| QUAL-04 | TBD | Pending |
+| PROD-01 | Phase 1 | Pending |
+| PROD-02 | Phase 1 | Pending |
+| PROD-03 | Phase 1 | Pending |
+| FOUND-01 | Phase 2 | Pending |
+| FOUND-02 | Phase 2 | Pending |
+| FOUND-03 | Phase 2 | Pending |
+| FOUND-04 | Phase 2 | Pending |
+| TRAN-01 | Phase 3 | Pending |
+| TRAN-02 | Phase 3 | Pending |
+| TRAN-03 | Phase 3 | Pending |
+| TRAN-04 | Phase 3 | Pending |
+| CAPT-01 | Phase 4 | Pending |
+| CAPT-02 | Phase 4 | Pending |
+| CAPT-03 | Phase 4 | Pending |
+| CAPT-04 | Phase 4 | Pending |
+| CAPT-05 | Phase 4 | Pending |
+| LIBR-01 | Phase 4 | Pending |
+| LIBR-02 | Phase 4 | Pending |
+| LIBR-03 | Phase 4 | Pending |
+| LIBR-04 | Phase 4 | Pending |
+| LIBR-05 | Phase 4 | Pending |
+| REVIEW-01 | Phase 5 | Pending |
+| REVIEW-02 | Phase 5 | Pending |
+| REVIEW-03 | Phase 5 | Pending |
+| REVIEW-04 | Phase 5 | Pending |
+| REVIEW-05 | Phase 5 | Pending |
+| REVIEW-06 | Phase 5 | Pending |
+| REVIEW-07 | Phase 5 | Pending |
+| QUAL-01 | Phase 6 | Pending |
+| QUAL-02 | Phase 6 | Pending |
+| QUAL-03 | Phase 6 | Pending |
+| QUAL-04 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 32 total
-- Mapped to phases: 0
-- Unmapped: 32
+- Mapped to phases: 32
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-24*
