@@ -73,7 +73,7 @@ Each task was committed atomically:
 2. **Task 2: Add retention, deletion, logging, analytics, and provider request boundaries** - `d9affec` (docs)
 3. **Task 3: Add advanced capture gate, learning signals, security notes, and review checklist** - `a7ef6fe` (docs)
 
-**Plan metadata:** pending final metadata commit
+**Plan metadata:** `113d513` (docs)
 
 ## Files Created/Modified
 
