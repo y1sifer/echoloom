@@ -54,3 +54,45 @@ Local cache rule: Any local cache is secondary, derived, clearable, and not auth
 Local-first/offline-first is not the v1 default.
 
 Downstream schema and UI plans must treat authenticated Supabase storage as the authority for user-owned saved vocabulary, saved context, review state, and review history. Local browser state may improve responsiveness, but it must be rebuildable or clearable without becoming the canonical record.
+
+## Retention and Deletion Rules
+
+Only learning data intentionally saved by the user becomes long-term product data. Ordinary translation activity is part of the current workflow, not a permanent archive.
+
+| Data Class | Long-Term Retention | Delete Behavior | Provider Exposure | Observability Rule |
+|------------|---------------------|-----------------|-------------------|--------------------|
+| Ordinary translation session | Short-lived, clearable, or not retained beyond the current workflow | User clear action or expiration removes session content when retained at all | Traditional MT may receive only the current source text plus source and target language for that request | Text-free events only; no raw source text or translated private text |
+| Saved vocabulary context | Only user-saved vocabulary item context is retained long term | Deleting a vocabulary item deletes associated stored context and review data | Not sent to providers except as the current sentence or paragraph for an explicit AI enhancement request tied to the selected term or phrase | Never appears in logs, analytics, traces, or error reports |
+| Review data linked to a saved vocabulary item | Retained only while needed to schedule and audit that saved item | Deleted with the vocabulary item it belongs to | Never sent to translation providers or AI enhancement providers | Aggregate only if anonymous, non-reconstructive, and non-user-identifying |
+| Full permanent translation history is out of v1 | No long-term permanent translation-history archive in v1 | No deletion flow is required for an archive that v1 must not create | Must not be provided as provider context | Must not appear in production observability |
+| Anonymous aggregate metrics | May remain after item deletion only if they cannot reconstruct source text, translated private text, saved context, vocabulary history, or review-history content | Anonymous aggregate metrics may remain only if non-reconstructive and non-user-identifying | Never provider payload | Counts, rates, buckets, and timings only |
+
+## Logging and Analytics Boundary
+
+Production logs, analytics, traces, and error reports must not contain raw source text, translated private text, saved context, vocabulary history, or review-history content.
+Configurable debug logging is allowed only when disabled by default, explicitly opted in, environment-scoped, and not a production default.
+
+Text-free observability allowlist:
+
+- Allowed observability field: IDs
+- Allowed observability field: counts
+- Allowed observability field: language pair
+- Allowed observability field: lengths
+- Allowed observability field: timings
+- Allowed observability field: provider status
+- Allowed observability field: error category
+
+Any future implementation that needs additional observability fields must prove that the field cannot reconstruct raw source text, translated private text, saved context, vocabulary history, or review-history content.
+
+## Provider Strategy and Request Boundary
+
+Traditional machine translation is first-class for v1.
+AI enhancement is optional and not the default definition of translation.
+DeepL API Pro is the recommended first traditional provider for later implementation, behind a server-side adapter.
+v1 implements one traditional translation provider behind a provider adapter boundary.
+
+Traditional provider request payload: current source text plus source and target language only.
+AI enhancement request payload: current sentence or paragraph plus selected term or phrase only.
+Forbidden provider fields: historical vocabulary, review history, unrelated saved contexts, unrelated translation sessions, broad user data.
+
+Google, Microsoft, and OpenAI may be considered later adapter targets or optional enhancement surfaces only through the same boundary. They are not additional active v1 traditional provider implementations in this contract.
