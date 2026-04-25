@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Phase 1 context gathered
-last_updated: "2026-04-25T07:53:50.435Z"
-last_activity: 2026-04-25 -- Phase 01 execution started
+status: verifying
+stopped_at: Completed 01-01-PLAN.md
+last_updated: "2026-04-25T08:02:37.551Z"
+last_activity: 2026-04-25
 progress:
   total_phases: 6
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 1
-  completed_plans: 0
-  percent: 0
+  completed_plans: 1
+  percent: 100
 ---
 
 # Project State
@@ -25,31 +25,31 @@ See: .planning/PROJECT.md (updated 2026-04-24)
 
 ## Current Position
 
-Phase: 01 (product-data-and-privacy-contract) — EXECUTING
+Phase: 01 (product-data-and-privacy-contract) — COMPLETE
 Plan: 1 of 1
-Status: Executing Phase 01
-Last activity: 2026-04-25 -- Phase 01 execution started
+Status: Phase complete — ready for verification
+Last activity: 2026-04-25
 
-Progress: [..........] 0%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 0
-- Average duration: N/A
-- Total execution time: 0.0 hours
+- Total plans completed: 1
+- Average duration: 4 min
+- Total execution time: 0.1 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01 | 1 | 4 min | 4 min |
 
 **Recent Trend:**
 
-- Last 5 plans: none
-- Trend: N/A
+- Last 5 plans: 01-01 (4 min)
+- Trend: Initial baseline
 
 *Updated after each plan completion*
 
@@ -63,6 +63,11 @@ Recent decisions affecting current work:
 - Phase 1 must resolve storage/auth posture and privacy/retention rules before schema or UI implementation starts.
 - Advanced capture is deferred out of v1 and should not be planned until the text-only loop is validated.
 - The v1 roadmap uses 6 phases despite coarse granularity to preserve product/data/privacy, foundation, translation, library, review, and hardening dependencies.
+- Echoloom v1 is web-first with Supabase Auth/Postgres/RLS as the system of record.
+- Only user-saved vocabulary item context is retained long term; ordinary translation sessions are short-lived, clearable, or not retained beyond the current workflow.
+- Production logs, analytics, traces, and error reports must remain free of raw source text, translated private text, saved context, vocabulary history, and review-history content.
+- DeepL API Pro is the recommended first traditional translation provider for later implementation behind a server-side adapter.
+- Screenshot/OCR, browser selection, and desktop/system-wide capture remain out of v1 until the text-only loop is complete and review burden is manageable.
 
 ### Pending Todos
 
@@ -82,6 +87,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-04-25T07:03:55.058Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-product-data-and-privacy-contract/01-CONTEXT.md
+Last session: 2026-04-25T08:02:37.544Z
+Stopped at: Completed 01-01-PLAN.md
+Resume file: None

@@ -9,9 +9,9 @@ Requirements for the first release. These define the smallest useful translation
 
 ### Product Contract
 
-- [ ] **PROD-01**: The MVP acceptance path verifies that a user can translate text, save a selected word or phrase with context, find it in the library, and review it when due.
-- [ ] **PROD-02**: The project defines whether v1 is web-first authenticated storage or local-first single-user storage before implementation begins.
-- [ ] **PROD-03**: The project defines privacy and retention rules for source text, saved context, provider requests, deletion, and raw-text logging before implementation begins.
+- [x] **PROD-01**: The MVP acceptance path verifies that a user can translate text, save a selected word or phrase with context, find it in the library, and review it when due.
+- [x] **PROD-02**: The project defines whether v1 is web-first authenticated storage or local-first single-user storage before implementation begins.
+- [x] **PROD-03**: The project defines privacy and retention rules for source text, saved context, provider requests, deletion, and raw-text logging before implementation begins.
 
 ### Foundation
 
@@ -106,9 +106,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PROD-01 | Phase 1 | Pending |
-| PROD-02 | Phase 1 | Pending |
-| PROD-03 | Phase 1 | Pending |
+| PROD-01 | Phase 1 | Complete |
+| PROD-02 | Phase 1 | Complete |
+| PROD-03 | Phase 1 | Complete |
 | FOUND-01 | Phase 2 | Pending |
 | FOUND-02 | Phase 2 | Pending |
 | FOUND-03 | Phase 2 | Pending |
@@ -146,4 +146,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-04-24*
-*Last updated: 2026-04-24 after initial definition*
+*Last updated: 2026-04-25 after Phase 1 contract execution*

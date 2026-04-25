@@ -12,7 +12,7 @@ Echoloom v1 moves from a locked product/data/privacy contract into a web-first t
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Product, Data, and Privacy Contract** - Lock the MVP acceptance path, storage posture, and source-text privacy rules before implementation.
+- [x] **Phase 1: Product, Data, and Privacy Contract** - Lock the MVP acceptance path, storage posture, and source-text privacy rules before implementation.
 - [ ] **Phase 2: Web Foundation and Core Schema** - Establish the authenticated web app, navigation, typed schemas, and domain/use-case boundaries.
 - [ ] **Phase 3: Text Translation and Structured Sessions** - Let users translate text into validated, persisted sessions without private raw-text logging.
 - [ ] **Phase 4: Phrase Selection and Vocabulary Library** - Let users save selected words or phrases with context and manage them in a searchable library.
@@ -29,7 +29,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. A reviewer can follow a written MVP acceptance path covering translate, select, save with context, find in library, and review when due.
   2. The v1 storage posture is explicit: web-first authenticated storage or local-first single-user storage is chosen before implementation starts.
   3. Privacy and retention rules state what source text, saved context, provider request data, deletion behavior, and raw-text logging restrictions apply.
-**Plans**: TBD
+**Plans**: 1/1 complete
 **UI hint**: no
 
 ### Phase 2: Web Foundation and Core Schema
@@ -101,7 +101,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Product, Data, and Privacy Contract | 0/TBD | Not started | - |
+| 1. Product, Data, and Privacy Contract | 1/1 | Complete | 2026-04-25 |
 | 2. Web Foundation and Core Schema | 0/TBD | Not started | - |
 | 3. Text Translation and Structured Sessions | 0/TBD | Not started | - |
 | 4. Phrase Selection and Vocabulary Library | 0/TBD | Not started | - |
