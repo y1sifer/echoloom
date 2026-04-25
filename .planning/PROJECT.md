@@ -14,7 +14,7 @@ Words and phrases discovered through translation must be captured with their ori
 
 ### Validated
 
-(None yet - ship to validate)
+- Phase 1 validated the product/data/privacy contract: the MVP acceptance path is locked, v1 is web-first with Supabase Auth/Postgres/RLS as system of record, and privacy rules cover source text retention, saved context, provider requests, deletion, and raw-text logging.
 
 ### Active
 
@@ -74,4 +74,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-24 after initialization*
+*Last updated: 2026-04-25 after Phase 1 verification*
