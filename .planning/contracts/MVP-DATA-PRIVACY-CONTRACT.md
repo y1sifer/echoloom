@@ -96,3 +96,48 @@ AI enhancement request payload: current sentence or paragraph plus selected term
 Forbidden provider fields: historical vocabulary, review history, unrelated saved contexts, unrelated translation sessions, broad user data.
 
 Google, Microsoft, and OpenAI may be considered later adapter targets or optional enhancement surfaces only through the same boundary. They are not additional active v1 traditional provider implementations in this contract.
+
+## Advanced Capture Gate
+
+Screenshot/OCR, browser selection, and desktop/system-wide selection stay out of v1.
+Advanced capture may be reconsidered only after the text-only loop is complete and review burden is manageable.
+
+Any later advanced capture plan must reuse the same context, retention, deletion, provider, and observability boundaries defined in this contract. Advanced capture must not create a parallel save/review pipeline or broaden provider payloads by default.
+
+## Learning Quality Signals
+
+Usage volume alone is insufficient to prove the learning loop works.
+
+| Signal | Definition | Privacy Payload | Why It Matters |
+|--------|------------|-----------------|----------------|
+| Review completion | Completed review cards divided by due review cards in a period. | Counts only. | Proves saved items return to actual review instead of stopping at capture. |
+| Overdue burden | Active cards overdue at the end of a period, optionally grouped by age bucket. | Counts and age buckets only. | Shows whether the loop creates manageable review debt. |
+| Lapse rate | Low-grade or failed review outcomes divided by completed reviews. | Counts only. | Flags card quality, scheduling difficulty, and memory weakness. |
+| Edit-from-review frequency | Edits launched from review divided by completed reviews. | Counts only. | Measures how often cards are confusing enough to require correction in context. |
+| Delete/pause rate | Deleted or paused items divided by active or reviewed items. | Counts only. | Signals low-value captures, overload, or poor item quality. |
+
+These signals must remain text-free: they can use IDs, counts, rates, buckets, timings, language pair, and status, but not raw source text, translated private text, saved context, vocabulary history, or review-history content.
+
+## Security Threat Notes
+
+- Raw source text leakage into logs, analytics, traces, or error reports
+  - Contract mitigation: `Logging and Analytics Boundary` bans raw source text, translated private text, saved context, vocabulary history, and review-history content from production observability, and provides a text-free allowlist.
+- Provider over-sharing beyond current source text, current sentence or paragraph, or selected term or phrase
+  - Contract mitigation: `Provider Strategy and Request Boundary` allows traditional MT payloads to contain only current source text plus languages, allows AI enhancement payloads to contain only the current sentence or paragraph plus selected term or phrase, and forbids history, unrelated contexts, and broad user data.
+- Deletion gaps leaving saved context or review data behind
+  - Contract mitigation: `Retention and Deletion Rules` states that deleting a vocabulary item deletes associated stored context and review data.
+- Anonymous aggregate metrics becoming reconstructive or user-identifying
+  - Contract mitigation: `Retention and Deletion Rules` allows anonymous aggregate metrics to remain only if non-reconstructive and non-user-identifying, and `Learning Quality Signals` limits metric payloads to text-free values.
+- Debug logging accidentally enabled in production
+  - Contract mitigation: `Logging and Analytics Boundary` permits configurable debug logging only when disabled by default, explicitly opted in, environment-scoped, and not a production default.
+
+## Review Checklist
+
+- [ ] PROD-01 acceptance path exists and covers translate -> select -> save -> library -> review.
+- [ ] PROD-02 storage posture names Supabase Auth/Postgres/RLS as system of record.
+- [ ] PROD-03 retention rules distinguish ordinary sessions, saved context, provider requests, deletion, and raw-text logging.
+- [ ] Provider payloads exclude history, unrelated contexts, review data, and broad user data.
+- [ ] Production observability excludes raw source text, translated private text, saved context, vocabulary history, and review-history content.
+- [ ] Deleting vocabulary removes associated context and review data.
+- [ ] Aggregate metrics are anonymous, non-reconstructive, and non-user-identifying.
+- [ ] Advanced capture remains out of v1 until the text-only loop is complete and review burden is manageable.
