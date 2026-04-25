@@ -2,7 +2,7 @@
 
 **Researched:** 2026-04-25 [VERIFIED: `date +%Y-%m-%d`]
 **Domain:** Product, data-retention, provider-request, and privacy contract for Echoloom's text-only translation-to-memory MVP [VERIFIED: local `.planning/ROADMAP.md`; VERIFIED: local `01-CONTEXT.md`]
-**Confidence:** HIGH for product/data/privacy contract scope, MEDIUM-HIGH for provider recommendation because final cost/account choice still needs human approval [VERIFIED: local `01-CONTEXT.md`; CITED: https://developers.deepl.com/api-reference/translate]
+**Confidence:** HIGH for product/data/privacy contract scope, MEDIUM-HIGH for provider recommendation because actual paid provider account setup remains a later implementation/user setup check if needed. [VERIFIED: local `01-CONTEXT.md`; CITED: https://developers.deepl.com/api-reference/translate]
 
 <user_constraints>
 ## User Constraints (from CONTEXT.md) [VERIFIED: local `.planning/phases/01-product-data-and-privacy-contract/01-CONTEXT.md`]
@@ -472,28 +472,25 @@ type TranslationObservedEvent = {
 
 ## Assumptions Log
 
-> All factual claims in this research were verified against local planning artifacts, npm registry checks, Context7, or official documentation. The planner still needs human approval for paid provider account creation and budget. [VERIFIED: npm registry; VERIFIED: local `01-CONTEXT.md`; CITED: https://www.deepl.com/en/pro-api]
+> All factual claims in this research were verified against local planning artifacts, npm registry checks, Context7, or official documentation. Paid provider account creation and budget remain later implementation/user setup checks if needed. [VERIFIED: npm registry; VERIFIED: local `01-CONTEXT.md`; CITED: https://www.deepl.com/en/pro-api]
 
 | # | Claim | Section | Risk if Wrong |
 |---|-------|---------|---------------|
 | - | No unverified factual assumptions recorded. | All sections | N/A |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Will the project accept DeepL API Pro cost and account setup for v1?** [CITED: https://www.deepl.com/en/pro-api]
    - What we know: DeepL API Pro has the strongest fit for this recommended contract because it documents translation API behavior, `context`, backend/CORS guidance, an official Node client, and API Pro data security. [CITED: https://developers.deepl.com/api-reference/translate; CITED: https://developers.deepl.com/docs/learning-how-tos/examples-and-guides/how-to-use-context-parameter; CITED: https://developers.deepl.com/docs/best-practices/cors-requests; CITED: https://support.deepl.com/hc/en-us/articles/360020685940-DeepL-API-Free-vs-DeepL-API-Pro]
-   - What's unclear: Budget/account preference is not specified in the phase context. [VERIFIED: local `01-CONTEXT.md`]
-   - Recommendation: Phase 1 should lock DeepL API Pro as recommended provider if paid account setup is acceptable; otherwise document Google Cloud Translation Advanced or Azure AI Translator as fallback without changing the provider adapter contract. [CITED: https://cloud.google.com/translate/docs/data-usage; CITED: https://learn.microsoft.com/en-us/azure/ai-services/translator/text-translation/reference/data-limits]
+   - RESOLVED: DeepL API Pro is accepted as the planning recommendation for the v1 traditional MT path behind a server-side adapter. Actual cost/account setup remains a later implementation/user setup check if needed. Google Cloud Translation Advanced and Azure AI Translator remain fallback adapter targets only, without changing the v1 one-provider adapter contract. [CITED: https://cloud.google.com/translate/docs/data-usage; CITED: https://learn.microsoft.com/en-us/azure/ai-services/translator/text-translation/reference/data-limits]
 
 2. **What exact ordinary translation-session expiration should v1 use?** [VERIFIED: local `01-CONTEXT.md`]
    - What we know: Ordinary translation sessions should be short-lived, clearable, or not retained beyond the current workflow. [VERIFIED: local `01-CONTEXT.md`]
-   - What's unclear: The user has not chosen a concrete TTL such as immediate discard, end-of-session deletion, or fixed-day expiration. [VERIFIED: local `01-CONTEXT.md`]
-   - Recommendation: The contract should choose "not retained after user clears/leaves the workflow unless promoted into saved vocabulary context" and leave exact TTL implementation to Phase 2/3 schema planning. [VERIFIED: local `01-CONTEXT.md`; VERIFIED: local `.planning/ROADMAP.md`]
+   - RESOLVED: Ordinary translation session expiration is resolved at the contract level as short-lived, clearable, or not retained beyond the current workflow. Exact TTL, schema fields, and provider/session lifecycle details belong to later schema/provider planning. [VERIFIED: local `01-CONTEXT.md`; VERIFIED: local `.planning/ROADMAP.md`]
 
-3. **Should saved context be minimizable without deleting the vocabulary identity?** [VERIFIED: local `01-CONTEXT.md`]
-   - What we know: Deleting a vocabulary item deletes associated context and review data. [VERIFIED: local `01-CONTEXT.md`]
-   - What's unclear: The phase context does not define a separate "remove context but keep term" action. [VERIFIED: local `01-CONTEXT.md`]
-   - Recommendation: Do not add a separate minimization action in v1 unless a later privacy requirement demands it; keep deletion semantics simple and testable. [VERIFIED: local `01-CONTEXT.md`; VERIFIED: local `.planning/REQUIREMENTS.md`]
+3. **What provider context minimization boundary should v1 use?** [VERIFIED: local `01-CONTEXT.md`]
+   - What we know: Traditional translation providers may receive only the current source text plus source and target language, and AI enhancement may receive only the current sentence or paragraph plus the selected term or phrase. [VERIFIED: local `01-CONTEXT.md`]
+   - RESOLVED: Context minimization is resolved as: traditional MT receives only current source text plus source/target language; AI enhancement receives only current sentence or paragraph plus selected term or phrase. Providers must not receive historical vocabulary, review history, unrelated saved contexts, unrelated translation sessions, or broad user data. [VERIFIED: local `01-CONTEXT.md`]
 
 ## Environment Availability
 
@@ -575,7 +572,7 @@ type TranslationObservedEvent = {
 **Confidence breakdown:**
 - Standard stack: HIGH - local decisions lock Supabase and traditional MT boundary; npm versions and official docs were verified on 2026-04-25. [VERIFIED: local `01-CONTEXT.md`; VERIFIED: npm registry]
 - Architecture: HIGH - this phase maps a documentation contract to later runtime tiers, and all runtime ownership claims are grounded in local requirements or official docs. [VERIFIED: local `.planning/ROADMAP.md`; CITED: https://supabase.com/docs/guides/database/postgres/row-level-security]
-- Provider recommendation: MEDIUM-HIGH - DeepL API Pro fits the documented request/privacy boundary, but budget/account preference remains open. [CITED: https://www.deepl.com/en/pro-api; VERIFIED: local `01-CONTEXT.md`]
+- Provider recommendation: MEDIUM-HIGH - DeepL API Pro fits the documented request/privacy boundary and is accepted as the planning recommendation; actual paid account setup remains a later implementation/user setup check if needed. [CITED: https://www.deepl.com/en/pro-api; VERIFIED: local `01-CONTEXT.md`]
 - Pitfalls: HIGH - pitfalls are directly drawn from local research and locked Phase 1 decisions. [VERIFIED: local `.planning/research/PITFALLS.md`; VERIFIED: local `01-CONTEXT.md`]
 - Security/privacy: HIGH for the contract baseline; later implementation still needs tests for RLS, deletion, and logging. [VERIFIED: local `.planning/REQUIREMENTS.md`; CITED: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html]
 
